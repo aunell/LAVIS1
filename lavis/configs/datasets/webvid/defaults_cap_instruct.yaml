@@ -35,9 +35,9 @@ datasets:
         train:
           url: 
             - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/webvid2m/train.json
-            # - /export/home/LAVIS/webvid_annotation.json
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS/webvid_annotation.json
           storage: 
             - webvid2m/annotations/train.json
-            # - /export/home/LAVIS/webvid_annotation.json
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS/webvid_annotation.json
       images:
         storage: /export/video-language-dataset/data/webvid2m/postprocess/downsampled_videos

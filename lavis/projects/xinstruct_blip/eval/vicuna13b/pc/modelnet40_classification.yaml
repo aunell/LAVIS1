@@ -104,7 +104,7 @@ datasets:
             - modelnet40_normal_resampled/modelnet40_test.txt
       
       pc:
-        storage: /export/home/ULIP/data/modelnet40_normal_resampled
+        storage: /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled
       
       images:
         storage: /export/einstein-vision/3d_vision/3d_object_datasets/modelnet40_pc_img

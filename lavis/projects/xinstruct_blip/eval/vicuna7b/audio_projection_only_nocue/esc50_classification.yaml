@@ -10,7 +10,7 @@ model:
   pretrained: https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/linear_projection_7b/audio_qformer_linear_nocue_768.pth
   # https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/linear_projection_7b/audio_qformer_linear.pth
   load_finetuned: False
-  # finetuned: /export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/audio_no_init_continue/20231115024/checkpoint_60001.pth
+  # finetuned: /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/audio_no_init_continue/20231115024/checkpoint_60001.pth
   stage1_url_or_filename: null
   image_model: "eva_clip_g"
   pc_model: "ulip2_pointbert"

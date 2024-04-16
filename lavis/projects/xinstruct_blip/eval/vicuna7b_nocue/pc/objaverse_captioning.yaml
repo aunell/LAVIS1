@@ -148,7 +148,7 @@ run:
 
   seed: 42
   output_dir: "output/xinstructblip/eval/vicuna7b_nocue/pc/objaverse_captioning/"
-  # annotation_file: /export/home/.cache/lavis/objaverse_mm_caption_instruct_gt/objaverse_mm_caption_instruct_val_annotations.json
+  # annotation_file: /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/objaverse_mm_caption_instruct_gt/objaverse_mm_caption_instruct_val_annotations.json
   
   amp: True
   resume_ckpt_path: null

@@ -24,12 +24,15 @@ class BaseTask:
 
     @classmethod
     def setup_task(cls, **kwargs):
+        print("Setting up task", cls.__name__)
         return cls()
 
     def build_model(self, cfg):
         model_config = cfg.model_cfg
 
         model_cls = registry.get_model_class(model_config.arch)
+        print("Setting up model", model_cls.__name__)
+        print("Setting up model", model_config)
         return model_cls.from_config(model_config)
 
     def build_datasets(self, cfg):
@@ -54,18 +57,20 @@ class BaseTask:
             dataset_config = datasets_config[name]
             builder = registry.get_builder_class(name)(dataset_config)
             dataset = builder.build_datasets()
-
+            #dataset['train'].classnames = list of classnames
             datasets[name] = dataset
-
         return datasets
 
     def train_step(self, model, samples):
         output = model(samples)
         loss_dict = {}
+        accuracy=0
         for k,v in output.items():
             if "loss" in k:
                 loss_dict[k] = v
-        return output["loss"], loss_dict
+            if "acc" in k:
+                accuracy = v
+        return output["loss"], loss_dict, accuracy
 
     def valid_step(self, model, samples):
         raise NotImplementedError
@@ -84,22 +89,47 @@ class BaseTask:
 
     def evaluation(self, model, data_loader, cuda_enabled=True):
         metric_logger = MetricLogger(delimiter="  ")
+        metric_logger.add_meter("acc", SmoothedValue(window_size=1, fmt="{value:.4f}"))
         header = "Evaluation"
         # TODO make it configurable
         print_freq = 10
 
         results = []
-
+        i=0
         for samples in metric_logger.log_every(data_loader, print_freq, header):
             samples = prepare_sample(samples, cuda_enabled=cuda_enabled)
 
             eval_output = self.valid_step(model=model, samples=samples)
+            acc = self.check_accuracy(eval_output)
             results.extend(eval_output)
-
+            i+=1
+            # if i>5:
+            #     breakpoint()
+            #     break
+            metric_logger.update(acc=acc)
         if is_dist_avail_and_initialized():
             dist.barrier()
 
         return results
+    
+    def check_accuracy(self, data):
+        """
+        data is a list of dictionaries with keys "image_id" and "caption"
+        """
+        def preprocess(generated: str):
+            generated = generated.lower()
+            return generated.split('\n')[0]
+
+        correct = 0
+        total = 0
+        for item in data:
+            generated = item["caption"]
+            caption =preprocess(generated)
+            if (caption in item["image_id"] or item["image_id"] in caption) and caption!= ' ':
+                correct += 1
+            total+=1
+
+        return correct/total
 
     def train_epoch(
         self,
@@ -174,6 +204,7 @@ class BaseTask:
         When using epoch-based, training stops after one epoch; when using iter-based,
         training stops after #iters_per_epoch iterations.
         """
+        # iters_per_epoch = 50
         use_amp = scaler is not None
 
         if not hasattr(data_loader, "__next__"):
@@ -183,6 +214,7 @@ class BaseTask:
         metric_logger = MetricLogger(delimiter="  ")
         metric_logger.add_meter("lr", SmoothedValue(window_size=1, fmt="{value:.6f}"))
         metric_logger.add_meter("loss", SmoothedValue(window_size=1, fmt="{value:.4f}"))
+        metric_logger.add_meter("acc", SmoothedValue(window_size=1, fmt="{value:.4f}"))
 
         # if iter-based runner, schedule lr based on inner epoch.
         logging.info(
@@ -223,7 +255,7 @@ class BaseTask:
             lr_scheduler.step(cur_epoch=inner_epoch, cur_step=i)
 
             with torch.cuda.amp.autocast(enabled=use_amp):
-                loss, loss_dict = self.train_step(model=model, samples=samples)
+                loss, loss_dict, acc = self.train_step(model=model, samples=samples)
                 loss /= accum_grad_iters #TODO: not affect loss_dict values for logging
 
             # after_train_step()
@@ -243,6 +275,7 @@ class BaseTask:
 
             metric_logger.update(**loss_dict)
             metric_logger.update(lr=optimizer.param_groups[0]["lr"])
+            metric_logger.update(acc=acc)
 
         # after train_epoch()
         # gather the stats from all processes

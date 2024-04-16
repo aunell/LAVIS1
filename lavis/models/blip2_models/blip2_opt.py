@@ -61,7 +61,6 @@ class Blip2OPT(Blip2Base):
         assert transformers_version >= version.parse("4.27"), "BLIP-2 OPT requires transformers>=4.27"
         
         self.tokenizer = self.init_tokenizer()
-
         self.visual_encoder, self.ln_vision = self.init_vision_encoder(
             vit_model, img_size, drop_path_rate, use_grad_checkpoint, vit_precision
         )
@@ -158,8 +157,10 @@ class Blip2OPT(Blip2Base):
                 labels=targets,
             )
         loss = outputs.loss
-
-        return {"loss": loss}
+        predictions = torch.argmax(outputs.logits, dim=-1)
+        mask = targets != -100
+        accuracy = (predictions[mask] == targets[mask]).float().mean()
+        return {"loss": loss, "accuracy": accuracy}
 
     @torch.no_grad()
     def generate(

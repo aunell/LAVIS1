@@ -6,7 +6,7 @@ model:
   arch: blip2_vicuna_xinstruct
   model_type: vicuna7b
   load_pretrained: True
-  # pretrained: /export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/audio/20231115194/checkpoint_65001.pth
+  # pretrained: /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/audio/20231115194/checkpoint_65001.pth
   load_finetuned: False
   finetuned: ""
   stage1_url_or_filename: null

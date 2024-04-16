@@ -1,0 +1,61 @@
+ # Copyright (c) 2022, salesforce.com, inc.
+ # All rights reserved.
+ # SPDX-License-Identifier: BSD-3-Clause
+ # For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+
+# Bleu_1: 0.832
+# Bleu_2: 0.691
+# Bleu_3: 0.556
+# Bleu_4: 0.438
+# METEOR: 0.317
+# ROUGE_L: 0.620
+# CIDEr: 1.461
+# SPICE: 0.252
+
+model:
+  arch: blip2_opt
+  model_type: pretrain_opt2.7b
+  use_grad_checkpoint: False
+  load_finetuned: True
+  finetuned: /pasteur/u/aunell/LAVIS/lavis/output/BLIP2/Class_imagenet/20240413160/checkpoint_4.pth
+  #/pasteur/u/aunell/LAVIS/lavis/output/BLIP2/Class_imagenet/20240411070/checkpoint_4.pth
+
+datasets:
+  imagenet: # name of the dataset builder
+    vis_processor:
+        eval:
+          name: "blip_image_eval"
+          image_size: 224
+    text_processor:
+        eval:
+          name: "blip_caption"
+          prompt: "What type of object is in this photo? "
+    build_info:
+        annotations:
+            storage: '/export/home/.cache/lavis/imagenet_gt/' #' #'/export/share/datasets/vision/coco/images/'
+
+run:
+  task: captioning
+  caption_key: "label"
+  sample_id_key: "question_id"
+  # optimizer
+  batch_size_train: 32
+  batch_size_eval: 16
+  num_workers: 4
+
+  max_len: 30
+  min_len: 8
+  num_beams: 5
+
+  seed: 42
+  output_dir: "output/BLIP2/Image_eval"
+
+  evaluate: True
+  test_splits: ["val"]
+
+  device: "cuda"
+  world_size: 1
+  dist_url: "env://"
+  distributed: True
+  annotation_file: /pasteur/u/yuhuiz/VlmClassifier/LLaVA/playground/data/imagenet_llava_val_question_full.jsonl
+  #  "/pasteur/u/yuhuiz/VlmClassifier/LLaVA/playground/data/imagenet_llava_train_full.jsonl"

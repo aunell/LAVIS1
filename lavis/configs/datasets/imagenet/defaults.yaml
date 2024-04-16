@@ -10,6 +10,13 @@ datasets:
 
     build_info:
       # Be careful not to append minus sign (-) before split to avoid itemizing
-      splits: ["val"]
+      splits: ["train", "val"]
+      # images:
+      #     storage: /pasteur/data/ImageNet-val #/export/share/datasets/vision/imagenet
+      annotations:
+        train:
+          storage: /pasteur/u/yuhuiz/VlmClassifier/LLaVA/playground/data/imagenet_llava_train_full.jsonl
+        val:
+          storage: /pasteur/u/yuhuiz/VlmClassifier/LLaVA/playground/data/imagenet_llava_val_question_full.jsonl
       images:
-          storage: /export/share/datasets/vision/imagenet
+        storage: /pasteur/u/yuhuiz/data/ImageNet/imagenet/

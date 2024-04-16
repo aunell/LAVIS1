@@ -31,7 +31,7 @@ datasets:
     build_info:
       subject_text: "jacket"
       images:
-        storage: "/export/home/workspace/LAVIS-Diffusion/LAVIS/projects/blip-diffusion/images/shein-jacket"
+        storage: "/pasteur/u/aunell/LAVIS/export/home/workspace/LAVIS-Diffusion/LAVIS/projects/blip-diffusion/images/shein-jacket"
 
 run:
   runner: runner_iter

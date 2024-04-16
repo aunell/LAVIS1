@@ -31,23 +31,23 @@ datasets:
         train:
           url:
               - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/vsr/train.jsonl
-              # - /export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/train.jsonl
+              # - /pasteur/u/aunell/LAVIS/export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/train.jsonl
           storage:
               - vsr/annotations/train.jsonl
-              # - /export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/train.jsonl
+              # - /pasteur/u/aunell/LAVIS/export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/train.jsonl
         val:
           url:
               - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/vsr/dev.jsonl
-              # - /export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/dev.jsonl
+              # - /pasteur/u/aunell/LAVIS/export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/dev.jsonl
           storage:
               - vsr/annotations/dev.jsonl
-              # - /export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/dev.jsonl
+              # - /pasteur/u/aunell/LAVIS/export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/dev.jsonl
         test:
           url:
               - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/vsr/test.jsonl
-              # - /export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/test.jsonl
+              # - /pasteur/u/aunell/LAVIS/export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/test.jsonl
           storage:
               - vsr/annotations/test.jsonl
-              # - /export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/test.jsonl
+              # - /pasteur/u/aunell/LAVIS/export/home/data/annotations/VSR/visual-spatial-reasoning/data/splits/zeroshot/test.jsonl
       images:
           storage: /export/share/datasets/vision_language/VSR/images

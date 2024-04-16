@@ -12,6 +12,7 @@ from collections import defaultdict, deque
 
 import torch
 import torch.distributed as dist
+import wandb
 
 from lavis.common import dist_utils
 
@@ -159,6 +160,7 @@ class MetricLogger(object):
                             memory=torch.cuda.max_memory_allocated() / MB,
                         )
                     )
+                    wandb.log({name: meter.global_avg for name, meter in self.meters.items()})
                 else:
                     print(
                         log_msg.format(

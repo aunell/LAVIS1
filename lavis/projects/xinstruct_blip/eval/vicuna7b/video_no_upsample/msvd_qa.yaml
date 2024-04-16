@@ -17,7 +17,7 @@ model:
   audio_model: "beats"
   pretrained_image_qformer: https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/vicuna7b/image_qformer.pth
   pretrained_pc_qformer: https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/vicuna7b/pc_qformer.pth
-  pretrained_video_qformer: /export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/video/20231111090/checkpoint_10000.pth
+  pretrained_video_qformer: /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/video/20231111090/checkpoint_10000.pth
   # https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/vicuna7b/video_qformer_no_upsample10k.pth
   pretrained_audio_qformer: https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/vicuna7b/audio_qformer.pth
   load_attention_image_qformer: True
@@ -149,12 +149,12 @@ run:
   evaluate: True
   # train_splits: ["train"]
   valid_splits: ["test"]
-  ques_files: {"train": "/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_questions.json", 
-              "val": "/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_questions.json", 
-              "test":"/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_test_questions.json"}
-  anno_files: {"train": "/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_annotations.json", 
-            "val": "/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_annotations.json", 
-            "test":"/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_test_annotations.json"}
+  ques_files: {"train": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_questions.json", 
+              "val": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_questions.json", 
+              "test":"/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_test_questions.json"}
+  anno_files: {"train": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_annotations.json", 
+            "val": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_annotations.json", 
+            "test":"/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_test_annotations.json"}
 
 
 

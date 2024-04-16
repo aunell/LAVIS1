@@ -17,7 +17,7 @@ model:
   audio_model: "beats"
   pretrained_image_qformer: https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/vicuna7b_nocue/image_qformer.pth
   pretrained_pc_qformer: https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/vicuna7b_nocue/pc_qformer.pth
-  pretrained_video_qformer: /export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b_nocue/video/20231101140/checkpoint_10000.pth
+  pretrained_video_qformer: /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b_nocue/video/20231101140/checkpoint_10000.pth
   pretrained_audio_qformer: https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/vicuna7b_nocue/audio_qformer.pth
   load_attention_image_qformer: True
   load_attention_pc_qformer: True
@@ -138,7 +138,7 @@ run:
 
   seed: 42
   output_dir: "output/xinstructblip/eval/vicuna7b_nocue/video/msvd_captioning/"
-  # annotation_file: /export/home/.cache/lavis/msvd_caption_gt/msvd_caption_test_annotations.json
+  # annotation_file: /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_caption_gt/msvd_caption_test_annotations.json
 
   amp: True
   resume_ckpt_path: null

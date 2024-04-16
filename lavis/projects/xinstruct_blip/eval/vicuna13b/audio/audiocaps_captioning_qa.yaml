@@ -102,18 +102,18 @@ datasets:
         train:
           url: 
             - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/audiocaps/audio_qa_final_train.csv
-            # - /export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/audio_qa_data/audio_qa_final_train.csv
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/audio_qa_data/audio_qa_final_train.csv
           storage: 
             - audiocaps_qa/annotation/train.csv
-            # - /export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/audio_qa_data/audio_qa_final_train.csv
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/audio_qa_data/audio_qa_final_train.csv
           
         val:
           url: 
             - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/audiocaps/audio_qa_final_val.csv
-            # - /export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/audio_qa_data/audio_qa_final_val.csv
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/audio_qa_data/audio_qa_final_val.csv
           storage: 
             - audiocaps_qa/annotation/val.csv
-            # - /export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/audio_qa_data/audio_qa_final_val.csv
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/audio_qa_data/audio_qa_final_val.csv
 
       audio:
         storage: /audiocaps/AUDIOCAPS_32000Hz/audio

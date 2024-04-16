@@ -79,7 +79,7 @@ run:
   evaluate: True
   # train_splits: ["train"]
   valid_splits: ["test"]
-  annotation_file: /export/home/.cache/lavis/msvd_caption_gt/msvd_caption_test_annotations.json
+  annotation_file: /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_caption_gt/msvd_caption_test_annotations.json
 
   device: "cuda"
   world_size: 1

@@ -7,7 +7,7 @@ model:
   arch: blip2_vicuna_xinstruct
   model_type: vicuna7b
   load_pretrained: True
-  # pretrained: /export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/pc/20231115104/checkpoint_65000.pth  
+  # pretrained: /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/pc/20231115104/checkpoint_65000.pth  
   load_finetuned: False
   finetuned: ""
   stage1_url_or_filename: null
@@ -122,7 +122,7 @@ datasets:
             - modelnet40_normal_resampled/modelnet40_test.txt
       
       pc:
-        storage: /export/home/ULIP/data/modelnet40_normal_resampled
+        storage: /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled
       
       images:
         storage: /export/einstein-vision/3d_vision/3d_object_datasets/modelnet40_pc_img

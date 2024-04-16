@@ -18,12 +18,11 @@ class ImageFolderDataset(BaseDataset):
         super().__init__(vis_processor=vis_processor, vis_root=vis_root)
 
         self.inner_dataset = datasets.ImageFolder(vis_root)
-
+        
         self.annotation = [
-            {"image": elem[0], "label": elem[1], "image_id": elem[0]}
+            {"image": elem[0], "label": elem[1], "image_id": elem[0], "text_input": classnames[elem[1]]}
             for elem in self.inner_dataset.imgs
         ]
-
         self.classnames = classnames
 
         self._add_instance_ids()
@@ -45,6 +44,8 @@ class ImageFolderDataset(BaseDataset):
             "label": ann["label"],
             "image_id": ann["image_id"],
             "instance_id": ann["instance_id"],
+            "text_input": ann["text_input"],
+            "question_id": ann["image_id"]
         }
 
     def displ_item(self, index):

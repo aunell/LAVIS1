@@ -6,7 +6,7 @@ model:
   arch: blip2_vicuna_xinstruct
   model_type: vicuna13b
   load_pretrained: True
-  pretrained:  /export/home/LAVIS/lavis/output/new_training/vicuna13b/image/20230915215/checkpoint_880000.pth
+  pretrained:  /pasteur/u/aunell/LAVIS/export/home/LAVIS/lavis/output/new_training/vicuna13b/image/20230915215/checkpoint_880000.pth
   load_finetuned: False
   finetuned: ""
   stage1_url_or_filename: null # https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained.pth
@@ -51,7 +51,7 @@ model:
   freeze_video: True
   freeze_audio: True
   num_query_token: 32
-  llm_model: "/export/home/LAVIS/_pretrained_models/vicuna-13b"
+  llm_model: "/pasteur/u/aunell/LAVIS/export/home/LAVIS/_pretrained_models/vicuna-13b"
   prompt:  "describe the image."
   max_txt_len: 128
   max_output_txt_len: 256
@@ -100,9 +100,9 @@ datasets:
       annotations:
         train:
           url:
-              - /export/home/.cache/lavis/clean_cc12m_org.json
+              - /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/clean_cc12m_org.json
           storage:
-              - /export/home/.cache/lavis/clean_cc12m_org.json
+              - /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/clean_cc12m_org.json
       images:
           storage: /export/share/datasets/vision_language/cc12m_resize
 
@@ -458,7 +458,7 @@ datasets:
           url: 
             - https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/resolve/main/llava_instruct_150k.json
           storage: 
-            - /export/home/LLaVA-Instruct-150K/lava_instruct_150k.json
+            - /pasteur/u/aunell/LAVIS/export/home/LLaVA-Instruct-150K/lava_instruct_150k.json
       # Be careful not to append minus sign (-) before split to avoid itemizing
       images:
         storage: /export/share/datasets/vision/coco/images/train2017
@@ -527,7 +527,7 @@ run:
   output_dir: "output/xinstructblip/train/vicuna13b/image"
 
   amp: True
-  resume_ckpt_path: null #/export/home/LAVIS/lavis/output/new_training/vicuna13b/image/20230915215/checkpoint_880000.pth (Cuda OOM)
+  resume_ckpt_path: null #/pasteur/u/aunell/LAVIS/export/home/LAVIS/lavis/output/new_training/vicuna13b/image/20230915215/checkpoint_880000.pth (Cuda OOM)
 
   evaluate: False
   train_splits: ["train"]

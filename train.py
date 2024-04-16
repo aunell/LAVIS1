@@ -30,6 +30,7 @@ from lavis.models import *
 from lavis.processors import *
 from lavis.runners import *
 from lavis.tasks import *
+import wandb
 
 
 def parse_args():
@@ -77,7 +78,6 @@ def main():
 
     # set before init_distributed_mode() to ensure the same job_id shared across all ranks.
     job_id = now()
-
     cfg = Config(parse_args())
 
     init_distributed_mode(cfg.run_cfg)
@@ -88,16 +88,20 @@ def main():
     setup_logger()
 
     cfg.pretty_print()
+    wandb.init(project="generalized_vlm_tasks", entity="aunell", name="imagenet_pretrain")
+    wandb.config.update(cfg.to_dict())
 
     task = tasks.setup_task(cfg)
     datasets = task.build_datasets(cfg)
     model = task.build_model(cfg)
+
+    wandb.watch(model, log='all')
 
     runner = get_runner_class(cfg)(
         cfg=cfg, job_id=job_id, task=task, model=model, datasets=datasets
     )
     runner.train()
 
-
+    wandb.finish()
 if __name__ == "__main__":
     main()

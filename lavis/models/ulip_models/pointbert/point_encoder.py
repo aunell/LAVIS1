@@ -138,10 +138,10 @@ class PointTransformer(nn.Module):
         )
 
         self.norm = nn.LayerNorm(self.trans_dim)
-        # self.load_model_from_ckpt('/export/home/repos/SLIP/pretrained_models/point_transformer_8192.pt')
+        # self.load_model_from_ckpt('/pasteur/u/aunell/LAVIS/export/home/repos/SLIP/pretrained_models/point_transformer_8192.pt')
         # if not self.args.evaluate_3d:
         ## TODO: pass as config
-        # self.load_model_from_ckpt('/export/home/ULIP/data/initialize_models/ULIP-2_pointbert_last.pt')
+        # self.load_model_from_ckpt('/pasteur/u/aunell/LAVIS/export/home/ULIP/data/initialize_models/ULIP-2_pointbert_last.pt')
 
         # self.cls_head_finetune = nn.Sequential(
         #     nn.Linear(self.trans_dim * 2, 256),

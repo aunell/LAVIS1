@@ -52,10 +52,10 @@ datasets:
         val:
           url: 
             - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/discrn/audiocaps.json
-            # - /export/home/LAVIS-xgen_mm/lavis/configs/datasets/discriminatory_reasoning/discriminatory_dataset/audiocaps_discrn.json
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/configs/datasets/discriminatory_reasoning/discriminatory_dataset/audiocaps_discrn.json
           storage: 
             - discrn/annotations/audiocaps.json
-            # - /export/home/LAVIS-xgen_mm/lavis/configs/datasets/discriminatory_reasoning/discriminatory_dataset/audiocaps_discrn.json
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/configs/datasets/discriminatory_reasoning/discriminatory_dataset/audiocaps_discrn.json
 
       audio:
         storage: /export/einstein-vision/audio_datasets/audiocaps/AUDIOCAPS_32000Hz/audio/val

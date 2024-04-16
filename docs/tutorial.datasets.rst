@@ -25,16 +25,16 @@ We can define any new dataset configuration in ``lavis.configs.datasets``. For i
           # Be careful not to append minus sign (-) before split to avoid itemizing
           annotations:
             train:
-              url: /export/home/data/avsd/train_set4DSTC7-AVSD.json
+              url: /pasteur/u/aunell/LAVIS/export/home/data/avsd/train_set4DSTC7-AVSD.json
               storage: avsd/annotations/train.json
             val:
-              url: /export/home/data/avsd/valid_set4DSTC7-AVSD.json
+              url: /pasteur/u/aunell/LAVIS/export/home/data/avsd/valid_set4DSTC7-AVSD.json
               storage: avsd/annotations/val.json 
             test:
-              url: /export/home/data/avsd/test_set4DSTC7-AVSD.json
+              url: /pasteur/u/aunell/LAVIS/export/home/data/avsd/test_set4DSTC7-AVSD.json
               storage: avsd/annotations/test.json 
           features:
-            storage: /export/home/data/avsd/features/ 
+            storage: /pasteur/u/aunell/LAVIS/export/home/data/avsd/features/ 
 
 
 Dataset Card

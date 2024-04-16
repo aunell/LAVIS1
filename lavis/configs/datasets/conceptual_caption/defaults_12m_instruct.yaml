@@ -30,7 +30,7 @@ datasets:
         train:
           url:
             - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/cc12m/x_instructblip_clean.json
-              # - /export/home/workspace/datasets/cc12m.json
+              # - /pasteur/u/aunell/LAVIS/export/home/workspace/datasets/cc12m.json
           storage:
               - conceptual_caption/annotations/cc12m.json
       images:

@@ -105,17 +105,17 @@ datasets:
 train:
           url: 
             - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/objaverse/CAP3DQA_final.csv
-            # - /export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/3d_qa_data/CAP3DQA_final.csv
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/3d_qa_data/CAP3DQA_final.csv
           storage: 
             - objaverse_qa/annotations/train.csv
-            # - /export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/3d_qa_data/CAP3DQA_final.csv
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/3d_qa_data/CAP3DQA_final.csv
         val:
           url: 
             - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/objaverse/CAP3DQA_final_val.csv
-            # - /export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/3d_qa_data/CAP3DQA_final_val.csv
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/3d_qa_data/CAP3DQA_final_val.csv
           storage: 
             - objaverse_qa/annotations/val.csv
-            # - /export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/3d_qa_data/CAP3DQA_final_val.csv
+            # - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/projects/xinstructblip/data_aug/3d_qa_data/CAP3DQA_final_val.csv
 
       templates: null
 
@@ -145,8 +145,8 @@ run:
 
   seed: 42
   output_dir: "output/xinstructblip/eval/vicuna7b/pc_ulip2_objaverse_shapenet_k_1/objaverse_qa/"
- # ques_files: { "val": "/export/home/.cache/lavis/objaverse_mm_qa_gt/objaverse_mm_qa_val_questions.json" }
- # anno_files:  { "val": "/export/home/.cache/lavis/objaverse_mm_qa_gt/objaverse_mm_qa_val_annotations.json" }
+ # ques_files: { "val": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/objaverse_mm_qa_gt/objaverse_mm_qa_val_questions.json" }
+ # anno_files:  { "val": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/objaverse_mm_qa_gt/objaverse_mm_qa_val_annotations.json" }
 
 
   

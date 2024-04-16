@@ -1,5 +1,5 @@
 SUBJECT_TEXT="dog"
-IMAGE_STORAGE="/export/home/workspace/LAVIS-Diffusion/LAVIS/projects/blip-diffusion/images/dreambooth/dog"
+IMAGE_STORAGE="/pasteur/u/aunell/LAVIS/export/home/workspace/LAVIS-Diffusion/LAVIS/projects/blip-diffusion/images/dreambooth/dog"
 MAX_ITERS=40
 ITERS_PER_INNER_EPOCH=40 # number of iterations before saving a checkpoint 
 BATCH_SIZE=3

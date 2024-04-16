@@ -131,7 +131,7 @@ run:
 
   seed: 42
   output_dir: "output/xinstructblip/eval/vicuna13b/image_coco/flickr_captioning/"
-  # annotation_file: /export/home/.cache/lavis/flickr30k_caption_gt/flickr30k_caption_test_annotations.json
+  # annotation_file: /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/flickr30k_caption_gt/flickr30k_caption_test_annotations.json
 
   amp: True
   resume_ckpt_path: null

@@ -40,7 +40,6 @@ class CaptionTask(BaseTask):
     @classmethod
     def setup_task(cls, cfg):
         run_cfg = cfg.run_cfg
-
         num_beams = run_cfg.get("num_beams", 5)
         max_len = run_cfg.get("max_len", 30)
         min_len = run_cfg.get("min_len", 1)
@@ -90,15 +89,20 @@ class CaptionTask(BaseTask):
         val_ds_name = val_ds_name[0]
 
         # get question file, annotation file and anwser list in COCO format
+
         if self.annotation_file == None:
             if 'coco' not in val_ds_name: # coco is already precomputed in dataset
                 self.annotation_file = os.path.join(registry.get_path("cache_root"),f'{val_ds_name}_gt', f'{val_ds_name}_{self.split}_annotations.json')
                 if get_rank() == 0:
                     os.makedirs(os.path.join(registry.get_path("cache_root"),f'{val_ds_name}_gt'), exist_ok=True)
                     convert_to_coco_gt(datasets[val_ds_name], self.annotation_file, self.caption_key, self.sample_id_key, self.split, load_gt_from_file=self.load_gt_from_file, img_ids=self.img_ids)
+        else:
+            output_dir =  os.path.join(registry.get_path("cache_root"),f'{val_ds_name}_gt', f'{val_ds_name}_{self.split}_annotations.json')
+            convert_to_coco_gt(datasets[val_ds_name], output_dir, self.caption_key, self.sample_id_key, self.split, load_gt_from_file=self.annotation_file, img_ids=self.img_ids)
         return datasets
 
     def valid_step(self, model, samples):
+        # breakpoint() #check model
         results = []
         # run_cfg = slf.cfg.run_cfg
         captions = model.generate(
@@ -112,17 +116,23 @@ class CaptionTask(BaseTask):
             top_p=self.top_p,
             temperature=self.temperature,
         )
-        img_ids = samples[self.sample_id_key]
+        # breakpoint() #check samples and captions
+        # try:
+        #     img_ids = samples[self.sample_id_key]
+        # except:
+        img_ids = samples['text_input']
         for caption, img_id in zip(captions, img_ids):
             # not all img_ids are ints
-            img_id = int(img_id) if is_convertible_to_int(img_id) else img_id
-            if self.img_ids and img_id not in self.img_ids: # only include specified img_ids if specified
-                continue
+            # img_id = int(img_id) if is_convertible_to_int(img_id) else img_id
+            # if self.img_ids and img_id not in self.img_ids: # only include specified img_ids if specified
+            #     continue
             results.append({"caption": caption, "image_id": img_id})
-
+            # print(caption, img_id)
         return results
 
     def after_evaluation(self, val_result, split_name, epoch, **kwargs):
+        print(f"Saving results for {split_name}....")
+        # breakpoint()
         eval_result_file = self.save_result(
             result=val_result,
             result_dir=registry.get_path("result_dir"),
@@ -131,9 +141,12 @@ class CaptionTask(BaseTask):
         )
 
         if self.report_metric:
-            metrics = self._report_metrics(
-                eval_result_file=eval_result_file, split_name=split_name
-            )
+            # metrics = self._report_metrics(
+            #     eval_result_file=eval_result_file, split_name=split_name
+            # )
+            ##coco eval is coco specific
+            # breakpoint()
+            metrics = {"agg_metrics": 0.0}
         else:
             metrics = {"agg_metrics": 0.0}
 
@@ -176,15 +189,18 @@ def load_gt_file(file_path):
     else:
         with open(file_path, "r") as f:
             loaded = json.load(f)
-            if isinstance(loaded, list):
-                data.extend(loaded)
-            elif isinstance(loaded, dict):
+            loaded_list = loaded['annotations']
+            if isinstance(loaded_list, list):
+                data.extend(loaded_list)
+            elif isinstance(loaded_list, dict):
                 # assume that loaded data in file  is the corresponding caption to the key
                 data.extend([{"sample_id": k, **v} if isinstance(v, dict) else {"sample_id": k, "caption": v} for k, v in loaded.items()])
     return data
 
 def convert_to_coco_gt(data, outpath, caption_key, sample_id_key, split, load_gt_from_file=False, img_ids=[]):
     gt_data = {"annotations":[], "images":[]}
+    # caption_key = "caption"
+    # sample_id_key="image_id"
     if load_gt_from_file:
         print(f"Generating ground truth file for evaluation from {load_gt_from_file}....")
         data = load_gt_file(load_gt_from_file)
@@ -201,6 +217,9 @@ def convert_to_coco_gt(data, outpath, caption_key, sample_id_key, split, load_gt
     else:
         print(f"Generating ground truth file for evaluation....")
         for i,ann in tqdm(enumerate(data[split])):
+            # if i>10:
+            #     # breakpoint()
+            #     break
             captions = data[split].annotation[i][caption_key]
             img_id = int(ann[sample_id_key]) if is_convertible_to_int(ann[sample_id_key]) else ann[sample_id_key]
             if img_ids and img_id not in img_ids: # only include specified img_ids if specified

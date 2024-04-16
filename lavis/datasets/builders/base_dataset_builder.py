@@ -25,7 +25,6 @@ class BaseDatasetBuilder:
 
     def __init__(self, cfg=None):
         super().__init__()
-
         if cfg is None:
             # help to create datasets from default config.
             self.config = load_dataset_config(self.default_config_path())
@@ -156,7 +155,6 @@ class BaseDatasetBuilder:
                     download_url(url=url_or_filename, root=dirname, filename=filename)
 
     def _download_vis(self):
-
         storage_path = self.config.build_info.get(self.data_type).storage
         storage_path = utils.get_cache_path(storage_path)
 
@@ -300,7 +298,6 @@ class MultiModalDatasetBuilder(BaseDatasetBuilder):
             
             dataset_cls = self.train_dataset_cls if is_train else self.eval_dataset_cls
             datasets[split] = dataset_cls(**dataset_args)
-
         return datasets
 
     def _get_dataset_args(self, info, is_train):

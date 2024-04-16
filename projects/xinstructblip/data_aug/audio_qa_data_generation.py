@@ -23,7 +23,7 @@ args = parser.parse_args()
 split = args.split
 mode  = args.mode
 
-original_data_file = #f'/export/home/audio_datasets/audiocaps/video/AUDIOCAPS_32000Hz/{split}.csv'
+original_data_file = #f'/pasteur/u/aunell/LAVIS/export/home/audio_datasets/audiocaps/video/AUDIOCAPS_32000Hz/{split}.csv'
 output_dir = "./audio_qa_data"
 os.makedirs(output_dir, exist_ok=True)
 

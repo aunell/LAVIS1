@@ -144,7 +144,7 @@ run:
   evaluate: True
   # train_splits: ["train"]
   valid_splits: ["val"]
-  # annotation_file: /export/home/.cache/lavis/vatex_caption_gt/vatex_caption_val_annotations.json
+  # annotation_file: /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/vatex_caption_gt/vatex_caption_val_annotations.json
   # load_gt_from_file: vatex/annotations/cap_val.json
 
 

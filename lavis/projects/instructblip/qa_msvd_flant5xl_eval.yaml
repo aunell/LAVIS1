@@ -82,12 +82,12 @@ run:
   evaluate: True
   # train_splits: ["train"]
   valid_splits: ["test"]
-  ques_files: {"train": "/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_questions.json", 
-              "val": "/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_questions.json", 
-              "test":"/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_test_questions.json"}
-  anno_files: {"train": "/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_annotations.json", 
-            "val": "/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_annotations.json", 
-            "test":"/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_test_annotations.json"}
+  ques_files: {"train": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_questions.json", 
+              "val": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_questions.json", 
+              "test":"/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_test_questions.json"}
+  anno_files: {"train": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_annotations.json", 
+            "val": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_val_annotations.json", 
+            "test":"/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_qa_instruct_gt/msvd_qa_instruct_test_annotations.json"}
 
 
 

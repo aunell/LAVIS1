@@ -38,25 +38,25 @@ datasets:
       annotations:
         train:
           url: 
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train_8192pts_fps.dat
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train_8192pts_fps.dat
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train.txt
           storage: 
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train_8192pts_fps.dat
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train_8192pts_fps.dat
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train.txt
         val:
           url: 
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test_8192pts_fps.dat
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test_8192pts_fps.dat
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test.txt
           storage: 
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test_8192pts_fps.dat
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test_8192pts_fps.dat
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test.txt
       
       pc:
-        storage: /export/home/ULIP/data/modelnet40_normal_resampled
+        storage: /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled
       
       images:
         storage: /export/einstein-vision/3d_vision/3d_object_datasets/modelnet_images8192

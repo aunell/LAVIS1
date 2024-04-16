@@ -7,7 +7,7 @@ model:
   arch: blip2_vicuna_xinstruct
   model_type: vicuna7b
   load_pretrained: True
-  pretrained:  /export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/pc_ulip_objaverse/20231021125/checkpoint_65000.pth
+  pretrained:  /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/pc_ulip_objaverse/20231021125/checkpoint_65000.pth
   load_finetuned: False
   finetuned: ""
   stage1_url_or_filename: null
@@ -16,7 +16,7 @@ model:
   video_model: "eva_clip_g"
   audio_model: "beats"
   pretrained_image_qformer: https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/vicuna7b/image_qformer.pth
-  pretrained_pc_qformer: /export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/pc_ulip_objaverse/20231021125/checkpoint_65000.pth
+  pretrained_pc_qformer: /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna7b/pc_ulip_objaverse/20231021125/checkpoint_65000.pth
   pretrained_video_qformer: https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/vicuna7b/video_qformer.pth
   pretrained_audio_qformer: https://storage.googleapis.com/sfr-xinstructblip-data-research/model/xinstructblip_checkpoints/vicuna7b/audio_qformer.pth
   load_attention_image_qformer: True
@@ -103,25 +103,25 @@ datasets:
       annotations:
         train:
           url: 
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train_8192pts_fps.dat
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train_8192pts_fps.dat
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train.txt
           storage: 
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train_8192pts_fps.dat
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train_8192pts_fps.dat
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_train.txt
         val:
           url: 
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test_8192pts_fps.dat
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test_8192pts_fps.dat
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test.txt
           storage: 
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test_8192pts_fps.dat
-            - /export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_shape_names.txt
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test_8192pts_fps.dat
+            - /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled/modelnet40_test.txt
       
       pc:
-        storage: /export/home/ULIP/data/modelnet40_normal_resampled
+        storage: /pasteur/u/aunell/LAVIS/export/home/ULIP/data/modelnet40_normal_resampled
       
       images:
         storage: /export/einstein-vision/3d_vision/3d_object_datasets/modelnet40_pc_img

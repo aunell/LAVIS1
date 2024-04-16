@@ -13,7 +13,7 @@ datasets:
       annotations:
         train:
           url:
-              - /export/home/workspace/datasets/cc12m.json
+              - /pasteur/u/aunell/LAVIS/export/home/workspace/datasets/cc12m.json
           storage:
               - conceptual_caption/annotations/cc12m.json
       images:

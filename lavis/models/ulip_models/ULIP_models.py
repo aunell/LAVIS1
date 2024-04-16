@@ -196,7 +196,7 @@ def ULIP_PointBERT(ulip_v=2):
     from lavis.models.ulip_models.pointbert.point_encoder import PointTransformer
     from lavis.models.ulip_models.utils.config import cfg_from_yaml_file
     ## TODO: parse as config
-    # config_addr = '/export/home/LAVIS/lavis/models/ulip_models/pointbert/PointTransformer_8192point.yaml'
+    # config_addr = '/pasteur/u/aunell/LAVIS/export/home/LAVIS/lavis/models/ulip_models/pointbert/PointTransformer_8192point.yaml'
     url = "https://raw.githubusercontent.com/salesforce/ULIP/48d8d00b1cdb2aee79005817a202816f1c521911/models/pointbert/PointTransformer_8192point.yaml"
     config_addr = download_cached_file(
         url, check_hash=False, progress=True

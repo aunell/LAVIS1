@@ -28,6 +28,7 @@ from lavis.models import *
 from lavis.processors import *
 from lavis.runners.runner_base import RunnerBase
 from lavis.tasks import *
+import wandb
 
 
 def parse_args():
@@ -77,16 +78,19 @@ def main():
     setup_logger()
 
     cfg.pretty_print()
+    wandb.init(project="generalized_vlm_tasks", entity="aunell", name="imagenet_eval")
+    wandb.config.update(cfg.to_dict())
 
     task = tasks.setup_task(cfg)
     datasets = task.build_datasets(cfg)
     model = task.build_model(cfg)
+    wandb.watch(model, log='all')
 
     runner = RunnerBase(
         cfg=cfg, job_id=job_id, task=task, model=model, datasets=datasets
     )
     runner.evaluate(skip_reload=True)
-
+    wandb.finish()
 
 if __name__ == "__main__":
     main()

@@ -7,7 +7,7 @@ model:
   arch: blip2_vicuna_xinstruct
   model_type: vicuna13b
   load_pretrained: True
-  pretrained: /export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna13b/audio/20231027135/checkpoint_240007.pth
+  pretrained: /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna13b/audio/20231027135/checkpoint_240007.pth
   load_finetuned: False
   finetuned: ""
   stage1_url_or_filename: https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained.pth
@@ -18,7 +18,7 @@ model:
   pretrained_image_qformer: https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained.pth
   pretrained_pc_qformer:  https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained.pth
   pretrained_video_qformer: https://storage.googleapis.com/sfr-vision-language-research/LAVIS/models/BLIP2/blip2_pretrained.pth
-  pretrained_audio_qformer: /export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna13b/audio/20231027135/checkpoint_240007.pth
+  pretrained_audio_qformer: /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna13b/audio/20231027135/checkpoint_240007.pth
   load_attention_image_qformer: False
   load_attention_pc_qformer: False
   load_attention_video_qformer: False
@@ -52,7 +52,7 @@ model:
   freeze_video: True
   freeze_audio: True
   num_query_token: 32
-  llm_model: "/export/home/LAVIS/_pretrained_models/vicuna-13b"
+  llm_model: "/pasteur/u/aunell/LAVIS/export/home/LAVIS/_pretrained_models/vicuna-13b"
   prompt:  "describe the audio."
   max_txt_len: 128
   max_output_txt_len: 256
@@ -149,15 +149,15 @@ datasets:
       annotations:
         train:
           url: 
-            - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_train.csv
+            - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_train.csv
           storage: 
-            - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_train.csv
+            - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_train.csv
           
         # val:
         #   url: 
-        #     - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_val.csv
+        #     - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_val.csv
         #   storage: 
-        #     - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_val.csv
+        #     - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_val.csv
 
       audio:
         storage: /export/einstein-vision/audio_datasets/audiocaps/AUDIOCAPS_32000Hz/audio
@@ -179,7 +179,7 @@ datasets:
           name: blip_instruction
           modality: audio
           task: classification
-          cmu_dict_path: /export/home/LAVIS/cmu_dict.p
+          cmu_dict_path: /pasteur/u/aunell/LAVIS/export/home/LAVIS/cmu_dict.p
         eval:
           name: blip_caption
 
@@ -189,10 +189,10 @@ datasets:
       annotations:
         train:
           url: 
-            - /export/home/LAVIS-xgen_mm/lavis/configs/datasets/audioset/balanced_train_clean.csv
+            - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/configs/datasets/audioset/balanced_train_clean.csv
             - http://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/class_labels_indices.csv
           storage: 
-            - /export/home/LAVIS-xgen_mm/lavis/configs/datasets/audioset/balanced_train_clean.csv
+            - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/configs/datasets/audioset/balanced_train_clean.csv
             - audioset/annotations/class_labels_indices.csv
         # val:
         #   url: 
@@ -278,13 +278,13 @@ run:
   num_beams: 5
   caption_key: caption
   sample_id_key: youtube_id
-  annotation_file: /export/home/.cache/lavis/audiocaps_mm_caption_instruct_gt/audiocaps_mm_caption_instruct_val_annotations.json
+  annotation_file: /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/audiocaps_mm_caption_instruct_gt/audiocaps_mm_caption_instruct_val_annotations.json
 
   seed: 42
   output_dir: "output/xinstructblip/train/vicuna13b/audio"
 
   amp: True
-  resume_ckpt_path: /export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna13b/audio/20231027135/checkpoint_240007.pth
+  resume_ckpt_path: /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/output/xinstructblip/train/vicuna13b/audio/20231027135/checkpoint_240007.pth
 
   evaluate: False
   train_splits: ["train"]

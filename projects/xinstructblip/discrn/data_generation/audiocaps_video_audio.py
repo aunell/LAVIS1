@@ -26,7 +26,7 @@ parser.add_argument("--rnd", type=int, help=["Round of generation"])
 parser.add_argument("--split", type=str, help=["train, val"])
 parser.add_argument("--original_data_file", type=str)
 
-VIDEO_PATH = '' # f'/export/home/audio_datasets/audiocaps/video/AUDIOCAPS_32000Hz/audio/{split}'
+VIDEO_PATH = '' # f'/pasteur/u/aunell/LAVIS/export/home/audio_datasets/audiocaps/video/AUDIOCAPS_32000Hz/audio/{split}'
 
 args = parser.parse_args()
 shard = args.shard
@@ -38,7 +38,7 @@ original_data_file = args.original_data_file
 output_dir = './audio_video_data'
 video_list = os.listdir(VIDEO_PATH)
 df = pd.read_csv(original_data_file)
-# df = pd.read_csv(f'/export/home/audio_datasets/audiocaps/video/AUDIOCAPS_32000Hz/{split}.csv')
+# df = pd.read_csv(f'/pasteur/u/aunell/LAVIS/export/home/audio_datasets/audiocaps/video/AUDIOCAPS_32000Hz/{split}.csv')
 df['file_name'] = df['youtube_id'] + "_" + df['start_time'].astype(str) + ".mp4"
 df = df[df['file_name'].isin(video_list)]
 

@@ -28,7 +28,6 @@ class ImageNetBuilder(BaseDatasetBuilder):
         build_info = self.config.build_info
 
         vis_info = build_info.get(self.data_type)
-
         datasets = dict()
         for split in build_info.splits:
             assert split in [
@@ -45,7 +44,7 @@ class ImageNetBuilder(BaseDatasetBuilder):
             )
 
             vis_path = os.path.join(vis_info.storage, split)
-
+            #CURRENTLY  /pasteur/data/ImageNet-val/train from imagenet yaml
             # create datasets
             dataset_cls = self.train_dataset_cls if is_train else self.eval_dataset_cls
             datasets[split] = dataset_cls(

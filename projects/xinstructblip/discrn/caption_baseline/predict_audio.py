@@ -18,7 +18,7 @@ import pickle
 ## comment out balancind code in dataset before running. also comment out loading data.
 ds = load_dataset('audio_video_discrn')['val']
 
-checkpoint_path = "/export/home/WavCaps/Cnn14_Clotho_Spider_31.pt"
+checkpoint_path = "/pasteur/u/aunell/LAVIS/export/home/WavCaps/Cnn14_Clotho_Spider_31.pt"
 audio_path = ""
 cp = torch.load(checkpoint_path)
 config = cp["config"]

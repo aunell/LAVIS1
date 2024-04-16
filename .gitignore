@@ -155,5 +155,7 @@ debug*/
 *.csv
 *.p
 *.pdf
+*.txt
 
 cache/
+data/*

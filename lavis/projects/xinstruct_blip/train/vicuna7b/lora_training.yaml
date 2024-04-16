@@ -104,10 +104,10 @@ datasets:
         train:
           url:
               # - https://storage.googleapis.com/sfr-xinstructblip-data-research/data/cc12m/x_instructblip_clean.json
-              - /export/home/.cache/lavis/clean_cc12m_org.json
+              - /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/clean_cc12m_org.json
           storage:
               # - cc12m/x-instructblip_cc12m_annotation.json
-              - /export/home/.cache/lavis/clean_cc12m_org.json
+              - /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/clean_cc12m_org.json
       images:
           storage: /export/share/datasets/vision_language/cc12m_resize
 
@@ -463,7 +463,7 @@ datasets:
           url: 
             - https://huggingface.co/datasets/liuhaotian/LLaVA-Instruct-150K/resolve/main/llava_instruct_150k.json
           storage: 
-            - /export/home/LLaVA-Instruct-150K/lava_instruct_150k.json
+            - /pasteur/u/aunell/LAVIS/export/home/LLaVA-Instruct-150K/lava_instruct_150k.json
       # Be careful not to append minus sign (-) before split to avoid itemizing
       images:
         storage: /export/share/datasets/vision/coco/images/train2017
@@ -540,15 +540,15 @@ datasets:
       annotations:
         train:
           url: 
-            - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_train.csv
+            - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_train.csv
           storage: 
-            - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_train.csv
+            - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_train.csv
           
         # val:
         #   url: 
-        #     - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_val.csv
+        #     - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_val.csv
         #   storage: 
-        #     - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_val.csv
+        #     - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/audio_qa/audio_qa_final_val.csv
 
       audio:
         storage: /export/einstein-vision/audio_datasets/audiocaps/AUDIOCAPS_32000Hz/audio
@@ -570,7 +570,7 @@ datasets:
           name: blip_instruction
           modality: audio
           task: classification
-          cmu_dict_path: /export/home/LAVIS/cmu_dict.p
+          cmu_dict_path: /pasteur/u/aunell/LAVIS/export/home/LAVIS/cmu_dict.p
         eval:
           name: blip_caption
 
@@ -580,10 +580,10 @@ datasets:
       annotations:
         train:
           url: 
-            - /export/home/LAVIS-xgen_mm/lavis/configs/datasets/audioset/balanced_train_clean.csv
+            - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/configs/datasets/audioset/balanced_train_clean.csv
             - http://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/class_labels_indices.csv
           storage: 
-            - /export/home/LAVIS-xgen_mm/lavis/configs/datasets/audioset/balanced_train_clean.csv
+            - /pasteur/u/aunell/LAVIS/export/home/LAVIS-xgen_mm/lavis/configs/datasets/audioset/balanced_train_clean.csv
             - audioset/annotations/class_labels_indices.csv
         # val:
         #   url: 
@@ -719,14 +719,14 @@ datasets:
       annotations:
         train:
           url: 
-            - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/3d_qa/CAP3DQA_final.csv
+            - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/3d_qa/CAP3DQA_final.csv
           storage: 
-            - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/3d_qa/CAP3DQA_final.csv
+            - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/3d_qa/CAP3DQA_final.csv
         # val:
         #   url: 
-        #     - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/3d_qa/CAP3DQA_final_val.csv
+        #     - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/3d_qa/CAP3DQA_final_val.csv
         #   storage: 
-        #     - /export/home/LAVIS/projects/mm_instructblip/instr_data_creation/3d_qa/CAP3DQA_final_val.csv
+        #     - /pasteur/u/aunell/LAVIS/export/home/LAVIS/projects/mm_instructblip/instr_data_creation/3d_qa/CAP3DQA_final_val.csv
 
       templates: null
 
@@ -852,8 +852,8 @@ datasets:
       # Be careful not to append minus sign (-) before split to avoid itemizing
       annotations:
         train:
-          url: /export/home/LAVIS/webvid_annotation.json
-          storage: /export/home/LAVIS/webvid_annotation.json
+          url: /pasteur/u/aunell/LAVIS/export/home/LAVIS/webvid_annotation.json
+          storage: /pasteur/u/aunell/LAVIS/export/home/LAVIS/webvid_annotation.json
       images:
         storage: /export/video-language-dataset/data/webvid2m/postprocess/downsampled_videos
 
@@ -915,7 +915,7 @@ run:
   # valid_splits: ["val"]
   # caption_key: caption
   # sample_id_key: youtube_id
-  # annotation_file: /export/home/.cache/lavis/audiocaps_mm_caption_instruct_gt/audiocaps_mm_caption_instruct_val_annotations.json
+  # annotation_file: /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/audiocaps_mm_caption_instruct_gt/audiocaps_mm_caption_instruct_val_annotations.json
 
 
   device: "cuda"

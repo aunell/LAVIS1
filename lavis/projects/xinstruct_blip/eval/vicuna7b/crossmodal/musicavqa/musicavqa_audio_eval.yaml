@@ -163,12 +163,12 @@ run:
   distributed: True
   use_dist_eval_sampler: False
   ques_files: {
-              "val": "/export/home/.cache/lavis/musicavqa_mm_instruct_gt/musicavqa_mm_instruct_val_questions.json", 
-              "test":"/export/home/.cache/lavis/musicavqa_mm_instruct_gt/musicavqa_mm_instruct_testt_questions.json"
+              "val": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/musicavqa_mm_instruct_gt/musicavqa_mm_instruct_val_questions.json", 
+              "test":"/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/musicavqa_mm_instruct_gt/musicavqa_mm_instruct_testt_questions.json"
               }
   anno_files: {
-            "val": "/export/home/.cache/lavis/musicavqa_mm_instruct_gt/musicavqa_mm_instruct_val_annotations.json", 
-            "test":"/export/home/.cache/lavis/musicavqa_mm_instruct_gt/musicavqa_mm_instruct_test_annotations.json"
+            "val": "/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/musicavqa_mm_instruct_gt/musicavqa_mm_instruct_val_annotations.json", 
+            "test":"/pasteur/u/aunell/LAVIS/export/home/.cache/lavis/musicavqa_mm_instruct_gt/musicavqa_mm_instruct_test_annotations.json"
             }
 
   # model specific

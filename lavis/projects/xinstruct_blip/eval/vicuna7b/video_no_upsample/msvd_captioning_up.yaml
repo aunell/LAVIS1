@@ -139,7 +139,7 @@ run:
 
   seed: 42
   output_dir: "output/xinstructblip/eval/vicuna7b/video_no_upsample_up/msvd_captioning/"
-  # annotation_file: /export/home/.cache/lavis/msvd_caption_gt/msvd_caption_test_annotations.json
+  # annotation_file: /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msvd_caption_gt/msvd_caption_test_annotations.json
 
   amp: True
   resume_ckpt_path: null

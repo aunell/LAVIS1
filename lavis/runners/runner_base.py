@@ -33,7 +33,7 @@ from lavis.datasets.datasets.dataloader_utils import (
 from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data import DataLoader, DistributedSampler
 from torch.utils.data.dataset import ChainDataset
-
+import wandb
 
 @registry.register_runner("runner_base")
 class RunnerBase:
@@ -257,7 +257,6 @@ class RunnerBase:
             )
 
             self._dataloaders = {k: v for k, v in zip(split_names, dataloaders)}
-
         return self._dataloaders
 
     @property
@@ -447,7 +446,6 @@ class RunnerBase:
     def train_epoch(self, epoch):
         # train
         self.model.train()
-
         return self.task.train_epoch(
             epoch=epoch,
             model=self.model,

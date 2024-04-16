@@ -143,7 +143,7 @@ run:
 
   seed: 42
   output_dir: "output/xinstructblip/eval/vicuna7b_nocue/video/msrvtt_captioning_val/"
-  # annotation_file: /export/home/.cache/lavis/msrvtt_caption_gt/msrvtt_caption_val_annotations.json
+  # annotation_file: /pasteur/u/aunell/LAVIS/export/home/.cache/lavis/msrvtt_caption_gt/msrvtt_caption_val_annotations.json
 
   amp: True
   resume_ckpt_path: null

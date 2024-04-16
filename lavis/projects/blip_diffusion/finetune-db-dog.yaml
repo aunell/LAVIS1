@@ -31,7 +31,7 @@ datasets:
     build_info:
       subject_text: "dog"
       images:
-        storage: "/export/home/workspace/LAVIS-Diffusion/LAVIS/projects/blip-diffusion/images/dreambooth/dog8" 
+        storage: "/pasteur/u/aunell/LAVIS/export/home/workspace/LAVIS-Diffusion/LAVIS/projects/blip-diffusion/images/dreambooth/dog8" 
 
 run:
   runner: runner_iter
