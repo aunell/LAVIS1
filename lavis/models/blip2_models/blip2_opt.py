@@ -94,6 +94,9 @@ class Blip2OPT(Blip2Base):
         self.opt_proj = nn.Linear(
             self.Qformer.config.hidden_size, self.opt_model.config.hidden_size
         )
+        
+        for param in self.opt_proj.parameters():
+            param.requires_grad = True
 
         self.max_txt_len = max_txt_len
         self.prompt = prompt
@@ -124,7 +127,9 @@ class Blip2OPT(Blip2Base):
 
         self.opt_tokenizer.padding_side = "right"
 
-        text = [t + "\n" for t in samples["text_input"]]
+        # text = [t + "\n" for t in samples["text_input"]]
+        if self.prompt:
+            text = [self.prompt + t +"\n" for t in samples["text_input"]]
 
         opt_tokens = self.opt_tokenizer(
             text,
@@ -134,19 +139,20 @@ class Blip2OPT(Blip2Base):
             max_length=self.max_txt_len,
         ).to(image.device)
 
-        targets = opt_tokens.input_ids.masked_fill(
+        targets =opt_tokens.input_ids.masked_fill(
             opt_tokens.input_ids == self.opt_tokenizer.pad_token_id, -100
         )
+        # breakpoint()
         if self.prompt:
-            targets[:, : self.prompt_length] = -100  # do not apply loss to the prompt
-
+            targets[:, : self.prompt_length-1] = -100  # do not apply loss to the prompt
+        # breakpoint()
         empty_targets = (
             torch.ones(atts_opt.size(), dtype=torch.long).to(image.device).fill_(-100)
         )
-        targets = torch.cat([empty_targets, targets], dim=1)
+        targets = torch.cat([empty_targets, targets], dim=1) #16,32 +16,16 = 16,48
 
-        inputs_embeds = self.opt_model.model.decoder.embed_tokens(opt_tokens.input_ids)
-        inputs_embeds = torch.cat([inputs_opt, inputs_embeds], dim=1)
+        inputs_embeds = self.opt_model.model.decoder.embed_tokens(opt_tokens.input_ids) #16,16
+        inputs_embeds = torch.cat([inputs_opt, inputs_embeds], dim=1) #16,32 +16,16 = 16,48
         attention_mask = torch.cat([atts_opt, opt_tokens.attention_mask], dim=1)
 
         with self.maybe_autocast():
@@ -156,11 +162,15 @@ class Blip2OPT(Blip2Base):
                 return_dict=True,
                 labels=targets,
             )
+
         loss = outputs.loss
         predictions = torch.argmax(outputs.logits, dim=-1)
-        mask = targets != -100
-        accuracy = (predictions[mask] == targets[mask]).float().mean()
-        return {"loss": loss, "accuracy": accuracy}
+        targets_decode =targets.masked_fill(targets == -100, self.opt_tokenizer.pad_token_id)
+        breakpoint()
+        predictions[:, :empty_targets.shape[1]+self.prompt_length] = self.opt_tokenizer.pad_token_id
+        print("predictions", self.opt_tokenizer.batch_decode(predictions, skip_special_tokens=True))
+        print("target", self.opt_tokenizer.batch_decode(targets_decode, skip_special_tokens=True))
+        return {"loss": loss, "accuracy": 0}
 
     @torch.no_grad()
     def generate(
@@ -209,7 +219,6 @@ class Blip2OPT(Blip2Base):
             atts_opt = torch.ones(inputs_opt.size()[:-1], dtype=torch.long).to(
                 image.device
             )
-
             if "prompt" in samples.keys():
                 prompt = samples["prompt"]
             else:
@@ -275,7 +284,6 @@ class Blip2OPT(Blip2Base):
             # output_text = self.opt_tokenizer.batch_decode(
             #     outputs[:, prompt_length:], skip_special_tokens=True
             # )
-            
             output_text = [text.strip() for text in output_text]
             return output_text
         

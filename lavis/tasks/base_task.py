@@ -92,21 +92,20 @@ class BaseTask:
         metric_logger.add_meter("acc", SmoothedValue(window_size=1, fmt="{value:.4f}"))
         header = "Evaluation"
         # TODO make it configurable
-        print_freq = 10
+        print_freq = 16
 
         results = []
-        i=0
+        # breakpoint()
+        acc_list = []
         for samples in metric_logger.log_every(data_loader, print_freq, header):
-            samples = prepare_sample(samples, cuda_enabled=cuda_enabled)
+            samples = prepare_sample(samples, cuda_enabled=cuda_enabled) #16 samples moved to cuda
 
             eval_output = self.valid_step(model=model, samples=samples)
-            acc = self.check_accuracy(eval_output)
+            acc = self.check_accuracy(eval_output) #acc out of 16
+            acc_list.append(acc)
+            acc_avg = sum(acc_list)/len(acc_list)
             results.extend(eval_output)
-            i+=1
-            # if i>5:
-            #     breakpoint()
-            #     break
-            metric_logger.update(acc=acc)
+            metric_logger.update(acc=acc_avg)
         if is_dist_avail_and_initialized():
             dist.barrier()
 
@@ -124,9 +123,12 @@ class BaseTask:
         total = 0
         for item in data:
             generated = item["caption"]
+            gt = preprocess(item["image_id"])
             caption =preprocess(generated)
-            if (caption in item["image_id"] or item["image_id"] in caption) and caption!= ' ':
+            if (caption in gt or gt in caption) and caption!= ' ':
                 correct += 1
+            print('caption:', caption)
+            print('ground truth:', gt)
             total+=1
 
         return correct/total
@@ -214,7 +216,7 @@ class BaseTask:
         metric_logger = MetricLogger(delimiter="  ")
         metric_logger.add_meter("lr", SmoothedValue(window_size=1, fmt="{value:.6f}"))
         metric_logger.add_meter("loss", SmoothedValue(window_size=1, fmt="{value:.4f}"))
-        metric_logger.add_meter("acc", SmoothedValue(window_size=1, fmt="{value:.4f}"))
+        # metric_logger.add_meter("acc", SmoothedValue(window_size=1, fmt="{value:.4f}"))
 
         # if iter-based runner, schedule lr based on inner epoch.
         logging.info(
@@ -275,7 +277,7 @@ class BaseTask:
 
             metric_logger.update(**loss_dict)
             metric_logger.update(lr=optimizer.param_groups[0]["lr"])
-            metric_logger.update(acc=acc)
+            # metric_logger.update(acc=acc)
 
         # after train_epoch()
         # gather the stats from all processes

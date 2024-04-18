@@ -14,18 +14,19 @@
 
 model:
   arch: blip2_opt
-  model_type: pretrain_opt2.7b
+  model_type: caption_coco_opt6.7b #pretrain_opt6.7b
   use_grad_checkpoint: False
   load_finetuned: True
-  finetuned: /pasteur/u/aunell/LAVIS/lavis/output/BLIP2/Class_imagenet/20240413160/checkpoint_4.pth
-  #/pasteur/u/aunell/LAVIS/lavis/output/BLIP2/Class_imagenet/20240411070/checkpoint_4.pth
-
+  finetuned: /pasteur/u/aunell/LAVIS/lavis/output/BLIP2/Class_imagenet/20240417203/checkpoint_0.pth
+  #/pasteur/u/aunell/LAVIS/lavis/output/BLIP2/Class_imagenet/20240416134/checkpoint_4.pth
+  prompt: "What type of object is in this photo? "
+  #/pasteur/u/aunell/LAVIS/lavis/output/BLIP2/Class_imagenet/20240415195/checkpoint_0.pth
 datasets:
   imagenet: # name of the dataset builder
     vis_processor:
         eval:
           name: "blip_image_eval"
-          image_size: 224
+          image_size: 364 #224
     text_processor:
         eval:
           name: "blip_caption"

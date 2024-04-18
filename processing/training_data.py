@@ -1,11 +1,15 @@
 from datasets import load_dataset
 from collections import OrderedDict
 import json
+import matplotlib.pyplot as plt
+import numpy as np
+import scipy.stats
 # dataset_pile = load_dataset("monology/pile-uncopyrighted", split="train[:10000000]")
 # dataset_roberta = load_dataset("gsgoncalves/roberta_pretrain", split="train[:10000000]")
 # dataset_pile = load_dataset("liuhaotian/LLaVA-Pretrain", split="train[:1]")
 file_path = '/pasteur/u/yuhuiz/VlmClassifier/LLaVA/playground/data/llava_v1_5_mix665k.json'
 file_path2 = '/pasteur/u/aunell/LAVIS/data/blip_laion_cc_sbu_558k.json'
+ipynb_file_path = '/pasteur/u/yuhuiz/VlmClassifier/VLMClassifierAnalysis/eval.ipynb'
 
 def load_from_json(file_path):
     with open(file_path, 'r') as file:
@@ -17,7 +21,36 @@ def load_from_json(file_path):
             dataset.append(item['conversations'][j]['value'])
     return dataset
 
-# print(dataset)
+def extract_classified_outputs(ipynb_file_path):
+    with open(ipynb_file_path, 'r', encoding='utf-8') as f:
+        notebook = json.load(f)
+    experiment_dict = {}
+
+    # Count the code blocks encountered
+    code_blocks_count = 0
+    # Iterate through the cells in the notebook
+    for cell in notebook['cells']:
+        # Check if the cell is a code cell
+        if cell['cell_type'] == 'code':
+            code_blocks_count += 1
+            # If this is the second code block
+            if code_blocks_count == 2:
+                # Iterate through the outputs
+                for output in cell['outputs']:
+                    # Check if 'text' is in the output
+                    if 'text' in output:
+                        for word_acc in output['text']:
+                            try:
+                                label, score = word_acc.split(':')
+                                score_float = float(score.split(' ')[1].split('\n')[0])
+                                experiment_dict[label] = score_float
+                            except:
+                                print(word_acc)
+                        # second_block_outputs.extend(output['text'])
+                break
+
+    return experiment_dict
+
 def word_frequency(dataset_pre, word_list, dataset=None):
     """
     Calculate the frequency of each word in word_list within the dataset.
@@ -44,6 +77,45 @@ def word_frequency(dataset_pre, word_list, dataset=None):
                 frequency[word] += 1
     
     return frequency
+
+def compare_plot(data_freq_dict, class_acc_dict):
+    # Check if both dictionaries have the same set of keys
+    if data_freq_dict.keys() != class_acc_dict.keys():
+        raise ValueError("Dictionaries have different sets of keys")
+    final_dict = {k: [data_freq_dict[k], class_acc_dict[k]] for k in class_acc_dict}
+
+    # Extract values from both dictionaries
+    labels = list(final_dict.keys())
+    values1 = [pair[0] for pair in final_dict.values()]
+    max_value1 = max(values1)
+    normalized_values1 = [val / max_value1 for val in values1]  # Normalize by the maximum value
+
+    values2 = [pair[1] for pair in final_dict.values()]
+    corr = np.corrcoef(normalized_values1, values2)[0, 1]
+    print('correlation coefficient: ', corr)
+    spearman_coefficient, p_value = scipy.stats.spearmanr(normalized_values1, values2)
+    print('spearman coefficient: ', spearman_coefficient)
+    print('p value: ', p_value)
+    x = np.arange(len(labels))  # the label locations
+    width = 0.35  # the width of the bars
+
+    fig, ax = plt.subplots()
+    
+    # Creating bars for the two sets of values
+    bars1 = ax.bar(x - width/2, normalized_values1, width, label='Frequency in Data')
+    bars2 = ax.bar(x + width/2, values2, width, label='Accuracy in Classified')
+
+    # Adding some text for labels, title and custom x-axis tick labels, etc.
+    ax.set_xlabel('Keys')
+    ax.set_ylabel('Values')
+    ax.set_title('Comparison of Dictionary Values by Key')
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels)
+    ax.legend()
+
+    # Save the plot to a file
+    plt.savefig('histogram.png')
+    plt.close()
 imagenet_classnames = [
     "tench",
     "goldfish",
@@ -1046,14 +1118,11 @@ imagenet_classnames = [
     "corn cob",
     "toilet paper",
 ]
-
+# Extract the outputs
+outputs_classified = extract_classified_outputs(ipynb_file_path)
 # print(word_frequency(dataset_pile, imagenet_classnames))
 dataset = load_from_json(file_path)
 d2= load_from_json(file_path2)
 dataset.extend(d2)
-breakpoint()
-d= word_frequency(dataset, imagenet_classnames, dataset)
-sorted_items = sorted(d.items(), key=lambda x: x[1], reverse=True)
-sorted_dict = OrderedDict(sorted_items)
-print(sorted_dict)
-breakpoint()
+outputs_data  = word_frequency(dataset, imagenet_classnames, dataset)
+compare_plot(outputs_data, outputs_classified)
